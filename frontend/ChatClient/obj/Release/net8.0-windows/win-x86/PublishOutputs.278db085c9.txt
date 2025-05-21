@@ -1,0 +1,2 @@
+D:\CPL\HTTPS\frontend\publish\x86\ChatClient.pdb
+D:\CPL\HTTPS\frontend\publish\x86\ChatClient.exe
