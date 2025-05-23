@@ -1,0 +1,2 @@
+D:\CPL\release\release_v0.1x64\ChatClient.pdb
+D:\CPL\release\release_v0.1x64\ChatClient.exe

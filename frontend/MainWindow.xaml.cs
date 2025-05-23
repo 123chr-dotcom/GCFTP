@@ -11,38 +11,22 @@ namespace ChatClient
     {
         private TcpClient _client;
         private NetworkStream _stream;
-        private const string ServerIP = "127.0.0.1";
-        private const int ServerPort = 8080;
+        private string _userName = "User" + new Random().Next(1000);
 
-        public MainWindow()
+        public MainWindow(TcpClient client, NetworkStream stream)
         {
             InitializeComponent();
-            ConnectToServer();
-        }
-
-        private string _userName = "User" + new Random().Next(1000);
-        
-        private void ConnectToServer()
-        {
-            try
-            {
-                _client = new TcpClient(ServerIP, ServerPort);
-                _stream = _client.GetStream();
-                
-                // 首先发送用户名
-                byte[] nameData = Encoding.UTF8.GetBytes(_userName + "\n");
-                _stream.Write(nameData, 0, nameData.Length);
-                
-                // 启动接收消息的线程
-                var receiveThread = new System.Threading.Thread(ReceiveMessages);
-                receiveThread.IsBackground = true;
-                receiveThread.Start();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"连接服务器失败: {ex.Message}");
-                Close();
-            }
+            _client = client;
+            _stream = stream;
+            
+            // 首先发送用户名
+            byte[] nameData = Encoding.UTF8.GetBytes(_userName + "\n");
+            _stream.Write(nameData, 0, nameData.Length);
+            
+            // 启动接收消息的线程
+            var receiveThread = new System.Threading.Thread(ReceiveMessages);
+            receiveThread.IsBackground = true;
+            receiveThread.Start();
         }
 
         private void ReceiveMessages()
@@ -70,7 +54,7 @@ namespace ChatClient
             {
                 byte[] data = Encoding.UTF8.GetBytes(message + "\n");
                 _stream.Write(data, 0, data.Length);
-                AppendMessage($"{_userName}: {message}");
+                // 不在发送时本地显示，由接收线程统一处理
                 MessageInput.Clear();
             }
             catch (Exception ex)
@@ -81,8 +65,12 @@ namespace ChatClient
 
         private void AppendMessage(string message)
         {
-            MessageDisplay.AppendText($"{message}{Environment.NewLine}");
-            MessageDisplay.ScrollToEnd();
+            // 检查是否已包含相同消息
+            if (!MessageDisplay.Text.Contains(message))
+            {
+                MessageDisplay.AppendText($"{message}{Environment.NewLine}");
+                MessageDisplay.ScrollToEnd();
+            }
         }
 
         private void SendButton_Click(object sender, RoutedEventArgs e)

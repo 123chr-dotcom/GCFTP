@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\CPL\HTTPS\frontend\ChatClient\obj\Debug\net8.0-windows\
+D:\CPL\TCP\frontend\ChatClient\obj\Debug\net8.0-windows\
 ChatClient
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-D:\CPL\HTTPS\frontend\ChatClient\App.xaml
-11407045341
+D:\CPL\TCP\frontend\ChatClient\App.xaml
+2-1149895725
 
-4-1430506515
+5-1368214333
 198-537775612
-MainWindow.xaml;
+MainWindow.xaml;StartWindow.xaml;
 
 False
 

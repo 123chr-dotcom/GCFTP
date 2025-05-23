@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Aw4qN1fZh+4=",
+  "dgSpecHash": "IZB537ret00=",
   "success": true,
-  "projectFilePath": "D:\\CPL\\HTTPS\\frontend\\ChatClient\\ChatClient.csproj",
+  "projectFilePath": "D:\\CPL\\TCP\\frontend\\ChatClient\\ChatClient.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.16\\microsoft.net.illink.tasks.8.0.16.nupkg.sha512"
   ],
